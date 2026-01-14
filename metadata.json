@@ -1,0 +1,8 @@
+{
+  "name": "Sentinel India: Legal Awareness & Reporting",
+  "description": "A comprehensive platform to understand illegal activities in India and a secure portal for reporting incidents with evidence.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
