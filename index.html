@@ -4,16 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentinel India</title>
+  <title>Sentinel India | Citizen Legal Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    .glass {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+    :root {
+      --ashoka-blue: #0f172a;
+      --trust-emerald: #059669;
+    }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: #f8fafc;
+      background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
+    }
+    h1, h2, h3, .heading-font { font-family: 'Space Grotesk', sans-serif; }
+    .security-border {
+      border: 2px solid #0f172a;
+      box-shadow: 4px 4px 0px #0f172a;
+    }
+    .security-border-sm {
+      border: 1px solid #cbd5e1;
+      box-shadow: 2px 2px 0px #cbd5e1;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    .emerald-pulse {
+      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(5, 150, 105, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
     }
   </style>
 <script type="importmap">
@@ -28,7 +52,7 @@
 }
 </script>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="text-slate-900">
   <div id="root"></div>
 </body>
 </html>

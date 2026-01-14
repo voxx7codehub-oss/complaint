@@ -15,68 +15,62 @@ export const LegalGuide: React.FC = () => {
       const result = await getLegalInsights(query);
       setInsight(result);
     } catch (err) {
-      alert("Error fetching insights. Please check your connection.");
+      alert("Search failed. Verify connectivity.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">Legal Knowledge Hub</h2>
-        <p className="text-slate-600">Search for any activity to understand its legal status in India.</p>
-      </div>
+    <div className="max-w-5xl mx-auto">
+      <header className="mb-16">
+        <h2 className="text-xs font-black text-emerald-600 uppercase tracking-[0.4em] mb-4">Legal Research Hub</h2>
+        <h1 className="text-5xl font-black text-slate-900 uppercase tracking-tighter">Command Intelligence</h1>
+        <p className="text-slate-500 mt-4 text-lg">Direct access to Indian Penal Code insights and procedural guidelines.</p>
+      </header>
 
-      <form onSubmit={handleSearch} className="mb-12">
-        <div className="relative group">
+      <form onSubmit={handleSearch} className="mb-20">
+        <div className="relative security-border bg-white p-2 flex flex-col md:flex-row gap-2">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g., Is public smoking illegal? | IPC for Bribery"
-            className="w-full px-6 py-5 bg-white border-2 border-slate-100 rounded-2xl shadow-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all text-lg outline-none"
+            placeholder="ENTER LEGAL QUERY (e.g. Traffic Violations, Public Rights...)"
+            className="flex-grow px-6 py-4 text-lg font-bold uppercase tracking-tight outline-none"
           />
           <button 
             type="submit"
             disabled={loading}
-            className="absolute right-3 top-3 px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all flex items-center gap-2 disabled:opacity-50"
+            className="px-10 py-4 bg-slate-900 text-white font-black uppercase tracking-widest hover:bg-emerald-600 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {loading ? (
-              <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
-            ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            )}
-            Search
+            {loading ? <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent"></span> : 'Execute'}
           </button>
         </div>
       </form>
 
-      {insight && (
-        <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 animate-in fade-in slide-in-from-bottom-2 duration-700">
+      {insight ? (
+        <div className="bg-white border-2 border-slate-900 p-10 relative animate-in slide-in-from-bottom-5 duration-500">
+          <div className="absolute -top-3 -left-3 bg-emerald-600 text-white px-4 py-1 text-xs font-black uppercase tracking-widest shadow-md">
+            Verified Insight
+          </div>
           <div className="prose prose-slate max-w-none">
-            <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-              <svg className="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.994 7.994 0 0112 5a7.994 7.994 0 013 4.196c.589-.334 1.25-.536 1.94-.582.593-.04 1.157.172 1.564.555.407.382.596.936.536 1.528l-.164 1.637A5.996 5.996 0 0115 17h-1a3 3 0 11-6 0H7a5.996 5.996 0 01-3.876-4.666l-.164-1.637c-.06-.592.13-1.146.536-1.528.407-.383.97-.595 1.564-.555.69.046 1.35.248 1.94.582A7.994 7.994 0 019 4.804zM10 17a1 1 0 100-2 1 1 0 000 2z" /></svg>
-              Legal Insight
-            </h3>
-            <div className="whitespace-pre-wrap text-slate-700 leading-relaxed mb-8">
+            <div className="whitespace-pre-wrap text-slate-700 leading-relaxed font-medium text-lg mb-10">
               {insight.text}
             </div>
             
             {insight.sources.length > 0 && (
-              <div className="mt-8 pt-8 border-t border-slate-100">
-                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Verified Sources</h4>
-                <div className="flex flex-wrap gap-3">
+              <div className="mt-12 pt-8 border-t-2 border-slate-100 flex flex-col gap-4">
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Documented Sources</p>
+                <div className="flex flex-wrap gap-4">
                   {insight.sources.map((source: any, idx: number) => (
                     <a 
                       key={idx} 
                       href={source.web?.uri} 
                       target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-slate-100 text-slate-600 text-sm font-medium rounded-lg border border-slate-200 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-900 text-xs font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                      {source.web?.title || 'External Resource'}
+                      {source.web?.title || 'Resource'}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                     </a>
                   ))}
                 </div>
@@ -84,43 +78,25 @@ export const LegalGuide: React.FC = () => {
             )}
           </div>
         </div>
-      )}
-
-      {/* Recommended Topics */}
-      {!insight && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 opacity-70">
-          <TopicCard 
-            title="Public Nuisance" 
-            desc="Littering, noise pollution, and obstruction of public paths."
-            onClick={() => setQuery('What are the laws against public nuisance in India?')}
-          />
-          <TopicCard 
-            title="Road Safety" 
-            desc="Helmet laws, red light jumping, and drunk driving penalties."
-            onClick={() => setQuery('Motor Vehicles Act penalties for traffic violations')}
-          />
-          <TopicCard 
-            title="Cyber Crime" 
-            desc="Online harassment, identity theft, and financial fraud."
-            onClick={() => setQuery('Legal protection against online identity theft in India')}
-          />
-          <TopicCard 
-            title="Consumer Rights" 
-            desc="Protection against unfair trade and misleading ads."
-            onClick={() => setQuery('How to file a consumer court complaint for faulty products')}
-          />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { t: 'IPC 268', d: 'Public Nuisance & Rights' },
+            { t: 'MV ACT', d: 'Road Safety Protocols' },
+            { t: 'CONSUMER', d: 'Protection Laws' },
+            { t: 'IT ACT', d: 'Cyber Security & Fraud' }
+          ].map((topic, i) => (
+            <button 
+              key={i}
+              onClick={() => setQuery(`What is the law regarding ${topic.d} in India?`)}
+              className="p-8 bg-slate-50 border border-slate-200 hover:border-slate-900 transition-all text-left group flex flex-col justify-between h-48"
+            >
+              <h4 className="font-black text-slate-400 group-hover:text-slate-900 transition-colors uppercase tracking-widest text-xs">{topic.t}</h4>
+              <p className="font-bold text-slate-800 text-lg leading-tight group-hover:text-emerald-600 transition-colors">{topic.d}</p>
+            </button>
+          ))}
         </div>
       )}
     </div>
   );
 };
-
-const TopicCard: React.FC<{ title: string; desc: string; onClick: () => void }> = ({ title, desc, onClick }) => (
-  <button 
-    onClick={onClick}
-    className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all text-left group"
-  >
-    <h4 className="font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors">{title}</h4>
-    <p className="text-sm text-slate-500">{desc}</p>
-  </button>
-);

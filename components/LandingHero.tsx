@@ -3,52 +3,46 @@ import React from 'react';
 
 export const LandingHero: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) => {
   return (
-    <section className="relative overflow-hidden pt-16 pb-20 lg:pt-32 lg:pb-32 bg-white">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-50">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-100 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl"></div>
+    <section className="relative hero-gradient pt-24 pb-32 text-white border-b-4 border-emerald-600 overflow-hidden">
+      {/* Abstract Background Elements */}
+      <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-white fill-current">
+          <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.5" fill="none" />
+          <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" strokeWidth="0.5" />
+        </svg>
       </div>
-      
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block py-1 px-3 mb-6 text-sm font-semibold text-indigo-600 bg-indigo-50 rounded-full">
-            Citizen Empowerment Platform
-          </span>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 tracking-tight">
-            Building a <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Law-Abiding India</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed">
-            Stay informed about illegal activities, learn Indian laws, and safely document incidents. 
-            Empowering every citizen to be the change they wish to see.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={onGetStarted}
-              className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl shadow-xl hover:bg-indigo-700 transition-all scale-100 hover:scale-105"
-            >
-              Start Learning
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-white text-slate-800 font-bold border border-slate-200 rounded-xl shadow-sm hover:bg-slate-50 transition-all">
-              Watch Video Guide
-            </button>
+
+      <div className="container mx-auto px-6 relative">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 py-1.5 px-3 mb-8 text-xs font-black uppercase tracking-[0.2em] text-emerald-400 border border-emerald-400/30 bg-emerald-400/10">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            System Live: Active Monitoring
           </div>
           
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="p-6 glass rounded-2xl">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">500+</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Legal Insights</div>
-            </div>
-            <div className="p-6 glass rounded-2xl">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">24/7</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Available</div>
-            </div>
-            <div className="p-6 glass rounded-2xl">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">Secure</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Encryption</div>
-            </div>
-            <div className="p-6 glass rounded-2xl">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">Private</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Local Storage</div>
+          <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
+            Uphold <br/>The <span className="text-emerald-500 underline decoration-4 underline-offset-8">Constitution</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-slate-400 mb-12 leading-relaxed max-w-2xl font-light">
+            An intelligence-driven legal portal for Indian citizens. <br/>
+            Know the law. Document the truth. Protect the nation.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <button 
+              onClick={onGetStarted}
+              className="w-full sm:w-auto px-10 py-5 bg-emerald-600 text-white font-black uppercase tracking-widest hover:bg-emerald-500 transition-all flex items-center justify-center gap-3 security-border-sm"
+            >
+              Start Intelligence Search
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7-7 7" /></svg>
+            </button>
+            <div className="flex -space-x-3 overflow-hidden">
+              {[1,2,3,4].map(i => (
+                <div key={i} className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-900 bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px] font-bold">
+                  {i}0k+
+                </div>
+              ))}
+              <span className="pl-6 text-sm font-bold text-slate-500 uppercase flex items-center">Join Active Contributors</span>
             </div>
           </div>
         </div>
